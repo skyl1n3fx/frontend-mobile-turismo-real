@@ -1,0 +1,7 @@
+{
+  "name": "turismo_real",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
