@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ClientModule } from './users/client/pages/client.module';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'create-account',
     loadChildren: () => import('./auth/pages/create-account/create-account.module').then( m => m.CreateAccountPageModule)
+  },
+  {
+    path: 'cliente',
+    loadChildren: () => import('./users/client/pages/client.module').then( m => m.ClientModule)
   },
   {
     path: '**',
