@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { retry, tap } from 'rxjs/operators';
 import { AuthI } from '../../interfaces/auth.interface';
 import { UserI } from '../../interfaces/user.interface';
+import { LocalstorageService } from '../../../services/browser_data/localstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthenticationService {
     }
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private localstorageSv : LocalstorageService) { }
 
   get auth() : AuthI{
     return { ...this._auth! }
@@ -31,8 +32,9 @@ export class AuthenticationService {
 
   // Método que permite el inicio de sesión en la app
   login(user : UserI):Observable<any>{
-    return this.http.post(`${ this.baseUrl }/login/`, user,this.httpOptions).pipe(
-      tap( data => this._auth = data)
+    return this.http.post(`${ this.baseUrl }/login/`, user,this.httpOptions)
+    .pipe(
+      tap( data => {this._auth = data , this.localstorageSv.set("usuario",this._auth)})
       );
   }
 
