@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { UserI } from '../../interfaces/user.interface';
 import { LoadingController } from '@ionic/angular';
 import { MsgService } from '../../../services/messages/msg.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -22,7 +23,8 @@ export class LoginFormComponent implements OnInit {
     private vs : ValidatorsService,
     private authsv : AuthenticationService,
     private loadingController : LoadingController,
-    private msgsv : MsgService
+    private msgsv : MsgService,
+    private router : Router
     ) { 
     this.loginForm = this.formBuilder.group({
 
@@ -55,6 +57,7 @@ export class LoginFormComponent implements OnInit {
       "password" : this.loginForm.value.userPassword
     };
 
+
     const carga = await this.loadingController.create({
       message: "Cargando ..."
     });
@@ -70,6 +73,7 @@ export class LoginFormComponent implements OnInit {
         if(data.user){
           // Navegamos a la página
           console.log("El usuario existe");
+          this.router.navigate(['/cliente/']);
         }
       },
       (e) => {
