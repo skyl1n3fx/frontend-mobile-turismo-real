@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { retry, tap } from 'rxjs/operators';
+import { map, retry, tap } from 'rxjs/operators';
 import { AuthI } from '../../interfaces/auth.interface';
 import { UserI } from '../../interfaces/user.interface';
 import { LocalstorageService } from '../../../services/browser_data/localstorage.service';
@@ -38,12 +38,32 @@ export class AuthenticationService {
       );
   }
 
-  authVerify():Observable<boolean> | boolean{
-    if(!this.localstorageSv.get("token")){
-      return false;
+  authVerify():Observable<boolean>{
+
+    let user = this.localstorageSv.get("usuario");
+
+    if(user.token === undefined){
+      return of(false);
     }
-    // return this.refreshToken;
-  }
+
+  
+  
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': '**',
+        'Authorization': 'token ' + user.token
+      })
+    }
+      
+
+    return this.http.get(`${ this.TURISMO_REAL_API }/refresh-token/`,this.httpOptions).pipe(
+    tap( data => { this._auth = this.localstorageSv.get("usuario"), this._auth.token = data['token'] , this.localstorageSv.set("usuario",this._auth) } )
+    ).
+    pipe(map(x => { return true; })); 
+  
+
+}
 
   /*
   return this.http.get<Auth>('s(this.baseUrl /usuarios/1¹)
@@ -56,7 +76,6 @@ return true;
   */
 
   refreshToken():Observable<any>{
-    console.log(this.httpOptions);
     let user = this.localstorageSv.get("usuario");
     if(user !== null){
       this.httpOptions = {
@@ -67,9 +86,10 @@ return true;
         })
       }
     }
-    return this.http.get(`${ this.TURISMO_REAL_API }/refresh-token/`,this.httpOptions).pipe(
-      tap( data => { this._auth = this.localstorageSv.get("usuario"), this._auth.token = data.token , this.localstorageSv.set("usuario",this._auth) } )
-      );
+    return this.http.get(`${ this.TURISMO_REAL_API }/refresh-token/`,this.httpOptions).
+    pipe(
+      tap( data => { this._auth = this.localstorageSv.get("usuario"), this._auth.token = data.token , this.localstorageSv.set("usuario",this._auth) } )  
+      )
   }
 
   logout(){}
