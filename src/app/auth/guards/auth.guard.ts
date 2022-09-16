@@ -18,7 +18,6 @@ export class AuthGuard implements CanLoad, CanActivate {
     return this.authSv.authVerify()
     .pipe(
       tap(authenticated => {
-        console.log(authenticated);
         if(!authenticated){
           this.router.navigate(['/login/']);
         }
