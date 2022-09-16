@@ -63,36 +63,13 @@ export class AuthenticationService {
     pipe(map(x => { return true; })); 
   
 
-}
-
-  /*
-  return this.http.get<Auth>('s(this.baseUrl /usuarios/1¹)
-.pipe(
-map( auth >= {
-console.log('map', auth);
-return true;
-}}
-};
-  */
-
-  refreshToken():Observable<any>{
-    let user = this.localstorageSv.get("usuario");
-    if(user !== null){
-      this.httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json', 
-          'Access-Control-Allow-Origin': '**',
-          'Authorization': 'token ' + user.token
-        })
-      }
-    }
-    return this.http.get(`${ this.TURISMO_REAL_API }/refresh-token/`,this.httpOptions).
-    pipe(
-      tap( data => { this._auth = this.localstorageSv.get("usuario"), this._auth.token = data.token , this.localstorageSv.set("usuario",this._auth) } )  
-      )
   }
 
-  logout(){}
+  logout(token : string):Observable<any>{
+    // Eliminar data del local storage
+    this.localstorageSv.remove("usuario");
+    return this.http.post(`${ this.TURISMO_REAL_API }/logout/`,{ 'token' : token },this.httpOptions).pipe(retry(2));
+  }
 
 
 }
