@@ -1,31 +1,43 @@
-<form action="" style="margin-top: 100px;" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
-  
-  <ion-item>
-    <ion-label>Correo Electrónico</ion-label>
-    <ion-input type="email" formControlName="userEmail"></ion-input>
-  </ion-item>
+<form action="" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
 
-  <app-msg *ngIf="validField('userEmail') && userEmail.errors.required" errorMessage="El Email es requerido."></app-msg>
-  <app-msg *ngIf="validField('userEmail') && userEmail.errors.minlength" errorMessage="El Email debe contener al menos 3 caracteres."></app-msg>
-  <app-msg *ngIf="validField('userEmail') && userEmail.errors.maxlength" errorMessage="El Email debe contener menos de 50 caracteres."></app-msg>
-  <app-msg *ngIf="validField('userEmail') && userEmail.errors.pattern" errorMessage="Ingrese un email válido."></app-msg>
+    <div class="form-group">
+        <img class="mail-icon" src="../../../../assets/images/image 1.png">
+        <label for="exampleInputEmail1">Correo</label>
+        <input type="email" formControlName="userEmail" 
+        class="form-control mail-input" id="exampleInputEmail1"
+            aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.cl">
+    </div>
 
-  <ion-item>
-    <ion-label>Contraseña</ion-label>
-    <ion-input type="password" formControlName="userPassword"></ion-input>
-  </ion-item>
+    <p class="msg-error" *ngIf="validField('userEmail') && userEmail.errors.required">El Email es requerido.</p>
+    <p class="msg-error" *ngIf="validField('userEmail') && userEmail.errors.minlength">El Email debe contener al menos 3 caracteres.</p>
+    <p class="msg-error" *ngIf="validField('userEmail') && userEmail.errors.maxlength">El Email debe contener menos de 50 caracteres.</p>
+    <p class="msg-error" *ngIf="validField('userEmail') && userEmail.errors.pattern">Ingrese un email válido.</p>
 
-  <app-msg *ngIf="validField('userPassword') && userPassword.errors.required" errorMessage="La contraseña es requerida."></app-msg>
-  <app-msg *ngIf="validField('userPassword') && userPassword.errors.maxlength" errorMessage="La contraseña debe contener al menos 7 caracteres."></app-msg>
-  <app-msg *ngIf="validField('userPassword') && userPassword.errors.maxlength" errorMessage="La contraseña debe contener menos de 20 caracteres."></app-msg>
-  <app-msg *ngIf="validField('userPassword') && userPassword.errors.pattern" errorMessage="La contraseña debe contener al menos una mayúscula, un caracter especial y un número."></app-msg>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña</label>
+        <input type="password" formControlName="userPassword"
+          class="form-control" id="exampleInputPassword1">
+    </div>
 
-  <!-- Checked Toggle -->
-  <ion-item style="--background-color: transparent;">
-    <ion-label>Recúerdame</ion-label>
-    <ion-toggle checked="false"></ion-toggle>
-  </ion-item>
+    <p class="msg-error" *ngIf="validField('userPassword') && userPassword.errors.required">La contraseña es requerida.</p>
+    <p class="msg-error" *ngIf="validField('userPassword') && userPassword.errors.maxlength">La contraseña debe contener al menos 7 caracteres.</p>
+    <p class="msg-error" *ngIf="validField('userPassword') && userPassword.errors.maxlength">La contraseña debe contener menos de 20 caracteres.</p>
+    <p class="msg-error" *ngIf="validField('userPassword') && userPassword.errors.pattern">La contraseña debe contener al menos una mayúscula, un caracter especial y un número.</p>
 
-  <app-button label="Ingresar"></app-button>
+    <button type="submit" class="btn">INGRESAR</button>
+
+    <div class="restore-password">
+      <p>¿Olvidaste tu contraseña?</p>
+      <a href="">Restablecer contraseña</a>
+    </div>
+    
+    <div class="create-account">
+      <p>¿Aún no tienes cuenta? <a href="">Crear cuenta</a></p>
+    </div>
 
 </form>
+
+
+
+
+
