@@ -6,8 +6,8 @@
   </ion-item>
 
   <app-msg *ngIf="validField('userEmail') && userEmail.errors.required" errorMessage="El Email es requerido."></app-msg>
-  <app-msg *ngIf="validField('userEmail') && userEmail.errors.maxlength" errorMessage="El Email debe contener al menos 3 caracteres."></app-msg>
-  <app-msg *ngIf="validField('userEmail') && userEmail.errors.maxlength" errorMessage="El Email debe contener menos de 20 caracteres."></app-msg>
+  <app-msg *ngIf="validField('userEmail') && userEmail.errors.minlength" errorMessage="El Email debe contener al menos 3 caracteres."></app-msg>
+  <app-msg *ngIf="validField('userEmail') && userEmail.errors.maxlength" errorMessage="El Email debe contener menos de 50 caracteres."></app-msg>
   <app-msg *ngIf="validField('userEmail') && userEmail.errors.pattern" errorMessage="Ingrese un email válido."></app-msg>
 
   <ion-item>
