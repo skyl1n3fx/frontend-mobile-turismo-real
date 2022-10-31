@@ -1,12 +1,18 @@
+
+// Google fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yellowtail&display=swap');
 
-@import url('_normalize.scss');
+// Normalize
+@import '_normalize.scss';
 
+// SCSS Variables
+@import "_shared_variables.scss";
 
 body{
     font-family: 'Montserrat', sans-serif;
-    color:#7E7E7E;
+    color:$turismo-grey-3;
 }
+
 .container{
     width: 350px;
 }
@@ -37,13 +43,13 @@ body{
 }
 
 .form-group input{
-    background-color: #EEEEEE;
+    background-color: $turismo-white-3;
 }
 #inputState{
-    background-color: #EEEEEE;
+    background-color: $turismo-white-3;
     text-align: center;
     font-size: 17px;
-    color: #3a3737;
+    color: $turismo-grey-2;
 }
 
 .form-control.mail-input{
@@ -52,17 +58,17 @@ body{
 
 .btn{
     margin-top: 20px;
-    background-color:#5C9EAD;
+    background-color: $turismo-primary-1;
     width: 100%;
     border-radius: 4px;
-    color: #ffffff;
+    color: $turismo-white-1;
 }
 .sign-in{
     text-align: center;
 }
 .sign-in p a{
     text-decoration: none;
-    color:#5C9EAD;
+    color: $turismo-primary-1;
 }
 .restore-password{
     margin-top: 20px;
@@ -70,13 +76,13 @@ body{
 }
 .restore-password a{
     text-decoration: none;
-    color:#5C9EAD;
+    color: $turismo-primary-1;
     display: block;
     margin: -20px 0 30px;
 }
 .create-account p a{
     text-decoration: none;
-    color:#5C9EAD;
+    color:$turismo-primary-1;
 }
 .navbar{
     position:relative;
@@ -102,19 +108,19 @@ body{
     border-top-left-radius:5px;
     width: 90%;
     margin: 0 auto;
-    background-color: #325273;
+    background-color: $turismo-primary-2;
     height: 100px;
     margin-top: 8px;
-    color: #FFFFFF;
+    color: $turismo-white-1;
     padding: 3px 8px;
 }
 .info-active-reservation a{
     text-decoration: none;
-    color: #FFFFFF !important;
+    color: $turismo-white-1 !important;
 }
 
 .active-reserve-receptionist-content{
-    color: #325273;
+    color: $turismo-primary-2;
 }
 
 .reserve-title{
@@ -137,15 +143,15 @@ td{
     font-weight: 600;
 }
 .td-title{
-    background-color: #EBEBEB !important;
-    color: #325273 !important;
+    background-color: $turismo-white-2 !important;
+    color: $turismo-primary-2 !important;
 }
 .td-description{
-    color: #000000;
+    color: $turismo-black-1;
 }
 .td-description.companion{
-    background-color: #5C9EAD;
-    color: #ffffff !important;
+    background-color: $turismo-primary-1;
+    color: $turismo-white-1 !important;
 }
 tr{
     position:relative;
@@ -159,8 +165,8 @@ tr{
     right: 15px;
 }
 .td-description.service{
-    background-color: #5C9EAD;
-    color: #ffffff !important;
+    background-color: $turismo-primary-1;
+    color: $turismo-white-1 !important;
 }
 .pagination{
     margin: 10px 10px 10px auto;
@@ -175,44 +181,44 @@ tr{
     position:absolute;
     left:15px;
     top:40px;
-    background-color: #FFFFFF;
+    background-color: $turismo-white-1;
     padding: 5px 15px;
-    border: 1px solid #B7B5B5;
+    border: 1px solid $turismo-grey-1;
     border-radius: 5px;
 }
 .td-buttons {
     padding: 0 !important;
 }
 .btn-danger{
-    background-color: #FF6584;
+    background-color: $turismo-danger-1;
     width: 50%;
     padding: 20px 0px !important;
     border:none !important;
     font-weight: 600;
-    color: #FFFFFF;
+    color: $turismo-white-1;
 }
 .btn-success{
-    background-color: #55CC99;
+    background-color: $turismo-secondary-1;
     width: 50%;
     padding: 20px 0;
     border: none !important;
     font-weight: 600;
-    color: #FFFFFF;
+    color: $turismo-white-1;
 }
 .status,.amount{
     font-weight: 900;
-    color: #325273;
+    color: $turismo-primary-2;
 }
 .fine{
-    color:#FF6584;
+    color:$turismo-danger-1;
 }
 .btn-save{
-    background-color: #55CC99;
+    background-color: $turismo-secondary-1;
     width: 100%;
     padding: 20px 0;
     border: none !important;
     font-weight: 600;
-    color: #FFFFFF;
+    color: $turismo-white-1;
 }
 .part,.damage{
     margin-top: 10px;
@@ -220,4 +226,8 @@ tr{
 }
 .damage{
     margin-right: 40px;
+}
+
+.msg-error {
+    color: $turismo-danger-1;
 }

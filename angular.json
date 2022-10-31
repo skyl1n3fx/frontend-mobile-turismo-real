@@ -31,10 +31,9 @@
               }
             ],
             "styles":[
-                    "src/theme/variables.scss",
                     "src/global.scss",
                     "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                    "src/theme/_styles.scss"
+                    "src/theme/styles.scss"
                   ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
