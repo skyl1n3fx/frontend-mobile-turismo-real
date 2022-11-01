@@ -17,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   public errorMessage: string = null;
   private user: UserI;
-
+  public showPassword : Boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +41,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onShowPassword(){
+    this.showPassword = !this.showPassword;
   }
 
   validField(field: string){
