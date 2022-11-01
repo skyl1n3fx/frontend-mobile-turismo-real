@@ -3,9 +3,17 @@
     <div class="form-group">
         <img class="mail-icon" src="../../../../assets/images/image 1.png">
         <label for="exampleInputEmail1">Correo</label>
-        <input type="email" formControlName="userEmail" 
-        class="form-control mail-input" id="exampleInputEmail1"
-            aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.cl">
+        <div class="input-form-group">
+          <input type="email" formControlName="userEmail" 
+          class="form-control mail-input input-form-group__input" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.cl">
+          <ion-icon 
+            *ngIf="userEmail.touched" class="input-form-group__icon"
+            [name]="userEmail.valid ? 'checkmark-done-circle-outline' : 'close-circle-outline'" 
+            [ngClass]="userEmail.valid  ? 
+            'input-form-group__icon--success' : 'input-form-group__icon--warning'"
+          ></ion-icon>
+        </div>
     </div>
 
     <p class="msg-error" *ngIf="validField('userEmail') && userEmail.errors.required">El Email es requerido.</p>
@@ -36,8 +44,6 @@
     </div>
 
 </form>
-
-
 
 
 

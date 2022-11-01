@@ -231,3 +231,23 @@ tr{
 .msg-error {
     color: $turismo-danger-1;
 }
+
+.input-form-group {
+    position: relative;
+}
+
+.input-form-group__icon {
+    position: absolute; 
+    top: 50%; 
+    left: 15px; 
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+}
+
+.input-form-group__icon--success {
+    color: $turismo-success-1;
+}
+
+.input-form-group__icon--warning {
+    color: $turismo-danger-1;
+}

@@ -18,6 +18,7 @@ export class LoginFormComponent implements OnInit {
   public errorMessage: string = null;
   private user: UserI;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private vs: ValidatorsService,
@@ -39,12 +40,13 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+  }
 
   validField(field: string){
     return this.loginForm.controls[field].errors && this.loginForm.controls[field].touched;
   }
+
 
   async iniciarSesion(){
     if(this.loginForm.invalid){
@@ -56,7 +58,6 @@ export class LoginFormComponent implements OnInit {
       username : this.loginForm.value.userEmail,
       password : this.loginForm.value.userPassword
     };
-
 
     const carga = await this.loadingController.create({
       message: 'Cargando ...'
@@ -77,9 +78,13 @@ export class LoginFormComponent implements OnInit {
         }
       },
       (e) => {
-        console.log(e);
+        if(e.error.error){
+          carga.dismiss();
+          this.msgsv.createAlert(e.error.error,'','');
+          return
+        }
         carga.dismiss();
-        this.msgsv.createAlert(e.error.error,'','');
+        this.msgsv.createAlert('¡Oops!, ¡Lo Sentimos!','El servicio no se encuentra disponible =(.','');
       }
     );
 
