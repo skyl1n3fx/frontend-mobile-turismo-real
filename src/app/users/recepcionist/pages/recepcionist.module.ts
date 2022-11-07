@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { HomeComponent } from './home/home.component';
 import { DeptosComponent } from './deptos/deptos.component';
-import { ClientRoutingModule } from './client-routing.module';
+import { RecepcionistRoutingModule } from './recepcionist-routing.module';
 
 
 
@@ -12,7 +12,7 @@ import { ClientRoutingModule } from './client-routing.module';
   imports: [
     CommonModule,
     IonicModule,
-    ClientRoutingModule
+    RecepcionistRoutingModule
   ]
 })
-export class ClientModule { }
+export class RecepcionistModule { }

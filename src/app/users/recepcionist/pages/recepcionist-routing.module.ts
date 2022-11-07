@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DeptosComponent } from './deptos/deptos.component';
+import { BookingsComponent } from './bookings/bookings.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    children: [
-      { path: 'reservas', component: DeptosComponent },
-      { path: '**', redirectTo: 'reservas' }
-    ]
+    component: DeptosComponent,
+  },
+  {
+    path: 'reservas',
+    component: BookingsComponent,
   }
 ]
 
@@ -19,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports:[RouterModule]
 })
-export class ClientRoutingModule { }
+export class RecepcionistRoutingModule { }

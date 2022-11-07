@@ -78,7 +78,7 @@ export class LoginFormComponent implements OnInit {
         if(data.user){
           // Navegamos a la página
           console.log('El usuario existe');
-          this.router.navigate(['/cliente/']);
+          this.router.navigate(['/recepcionista/']);
         }
       },
       (e) => {

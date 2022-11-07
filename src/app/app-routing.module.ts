@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { ClientModule } from './users/client/pages/client.module';
+import { RecepcionistModule } from './users/recepcionist/pages/recepcionist.module';
 
 const routes: Routes = [
   {
@@ -18,8 +18,8 @@ const routes: Routes = [
     loadChildren: () => import('./auth/pages/create-account/create-account.module').then( m => m.CreateAccountPageModule)
   },
   {
-    path: 'cliente',
-    loadChildren: () => import('./users/client/pages/client.module').then( m => m.ClientModule),
+    path: 'recepcionista',
+    loadChildren: () => import('./users/recepcionist/pages/recepcionist.module').then( m => m.RecepcionistModule),
     canLoad: [ AuthGuard ],
     canActivate: [ AuthGuard ]
   },
