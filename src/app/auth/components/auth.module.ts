@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { CreateAccountFormComponent } from './create-account-form/create-account-form.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -9,7 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [LoginFormComponent, CreateAccountFormComponent],
+  declarations: [LoginFormComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -17,6 +16,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     SharedModule
   ],
-  exports : [LoginFormComponent, CreateAccountFormComponent]
+  exports : [LoginFormComponent]
 })
 export class AuthModule { }

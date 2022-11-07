@@ -1,16 +1,16 @@
 <form action="" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
 
-    <div class="form-group">
+    <div class="form-group mt-5">
         <img class="mail-icon" src="../../../../assets/images/image 1.png">
         <label for="exampleInputEmail1">Correo</label>
         <div class="input-form-group">
-          <input type="email" formControlName="userEmail" 
+          <input type="email" formControlName="userEmail"
           class="form-control mail-input input-form-group__input" id="exampleInputEmail1"
           aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.cl">
-          <ion-icon 
+          <ion-icon
             *ngIf="userEmail.touched" class="input-form-group__icon"
-            [name]="userEmail.valid ? 'checkmark-done-circle-outline' : 'close-circle-outline'" 
-            [ngClass]="userEmail.valid  ? 
+            [name]="userEmail.valid ? 'checkmark-done-circle-outline' : 'close-circle-outline'"
+            [ngClass]="userEmail.valid  ?
             'input-form-group__icon--success' : 'input-form-group__icon--warning'"
           ></ion-icon>
         </div>
@@ -26,16 +26,16 @@
         <div class="input-form-group">
           <input [type]="showPassword ? 'text' : 'password'" formControlName="userPassword"
             class="form-control mail-input" id="exampleInputPassword1">
-          <ion-icon 
+          <ion-icon
             *ngIf="userPassword.touched" class="input-form-group__icon"
-            [name]="userPassword.valid ? 'checkmark-done-circle-outline' : 'close-circle-outline'" 
-            [ngClass]="userPassword.valid  ? 
+            [name]="userPassword.valid ? 'checkmark-done-circle-outline' : 'close-circle-outline'"
+            [ngClass]="userPassword.valid  ?
             'input-form-group__icon--success' : 'input-form-group__icon--warning'"
           ></ion-icon>
-          <ion-icon 
+          <ion-icon
           class="input-form-group__icon-password"
           (click) = 'onShowPassword()'
-          [name]="showPassword ? 'eye-outline' : 'eye-off-outline'" 
+          [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"
         ></ion-icon>
         </div>
     </div>
@@ -48,12 +48,8 @@
     <button type="submit" class="btn">INGRESAR</button>
 
     <div class="restore-password">
-      <p>¿Olvidaste tu contraseña?</p>
-      <a href="">Restablecer contraseña</a>
-    </div>
-    
-    <div class="create-account">
-      <p>¿Aún no tienes cuenta? <a href="">Crear cuenta</a></p>
+      <p>En esta plataforma puedes ingresar</p>
+      <p>Como <span class="text-light-blue">recepcionista</span> y <span class="text-light-blue">conductor</span>.</p>
     </div>
 
 </form>

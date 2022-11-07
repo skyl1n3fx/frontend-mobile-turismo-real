@@ -14,10 +14,6 @@ const routes: Routes = [
     loadChildren: () => import('./auth/pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'create-account',
-    loadChildren: () => import('./auth/pages/create-account/create-account.module').then( m => m.CreateAccountPageModule)
-  },
-  {
     path: 'recepcionista',
     loadChildren: () => import('./users/recepcionist/pages/recepcionist.module').then( m => m.RecepcionistModule),
     canLoad: [ AuthGuard ],
