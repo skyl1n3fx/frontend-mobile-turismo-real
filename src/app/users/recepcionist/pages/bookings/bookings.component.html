@@ -1,1 +1,151 @@
-a
+<ion-content>
+  <nav class="navbar bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="../../../../../assets/images/Group 8.png"></a>
+      <img src="../../../../../assets/images/user-regular 1.png" class="user-icon ms-auto" alt="icono usuario">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/recepcionista">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/recepcionista/reservas">RESERVAS <br>ACTIVAS</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="image-container">
+    <p class="ms-4 mt-4 text-white">Bienvenido<br>Recepcionista</p>
+    <img class="image-picwish" src="../../../../../assets/images/picwish 1.png">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="active-reserve-receptionist-content">
+          <h3 class="reserve-title mt-3">Reservas</h3>
+          <!-- <div class="d-flex justify-content-end mt-3">
+              <label for="formGroupExampleInput2" class="col-form-label fw-bold me-2">buscar:</label>
+              <input type="text" id="formGroupExampleInput2" class="form-control">
+          </div> -->
+          <div class="info-active-reservation">
+            <a data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false"
+              aria-controls="collapseExample">
+              <p>Lucas Menares <br>Grand Avenida</p>
+              <div class="d-flex justify-content-between">
+                <p>10/12/2022</p>
+                <p>20/12/2022</p>
+              </div>
+            </a>
+          </div>
+          <div class="info-table collapse" id="collapseExample">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                    <td class="td-title">Cliente</td>
+                </tr>
+                <tr>
+                    <td class="td-description">Lucas Menares</td>
+                </tr>
+                <tr>
+                    <td class="td-title">Rut</td>
+                </tr>
+                <tr>
+                    <td class="td-description">1.234.567-4</td>
+                </tr>
+                <tr>
+                    <td class="td-title">Hotel</td>
+                </tr>
+                <tr>
+                    <td class="td-description">Grand Avenida</td>
+                </tr>
+                <tr>
+                    <td class="td-title">Check In <a href="/recepcionista/checkin"><img src="../../../../../assets/images/pencil.png"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-description">10/10/2022 <img
+                            src="../../../../../assets/images/pending-icon 1.png"></td>
+                </tr>
+                <tr>
+                    <td class="td-title">Check Out <a href="/recepcionista/checkout"><img
+                                src="../../../../../assets/images/pencil.png"></a></td>
+                </tr>
+                <tr>
+                    <td class="td-description">20/10/2022 <img
+                            src="../../../../../assets/images/pending-icon 1.png"></td>
+                </tr>
+                <tr>
+                    <td class="td-title">Dirección Hotel</td>
+                </tr>
+                <tr>
+                    <td class="td-description">Calle Prueba #123, Santiago</td>
+                </tr>
+                <tr>
+                    <td class="td-title">Acompañantes</td>
+                </tr>
+                <tr>
+                    <td class="td-description companion">Niño 1
+                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-description companion">Niño 2
+                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-description companion">Acompañante 3
+                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-title">Servicios Extra</td>
+                </tr>
+                <tr>
+                    <td class="td-description service">Transporte
+                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-description service">Tour
+                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!-- <nav class="pagination" aria-label="Page navigation example">
+      <ul class="pagination">
+          <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+              </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+      </ul>
+  </nav> -->
+  </div>
+</ion-content>

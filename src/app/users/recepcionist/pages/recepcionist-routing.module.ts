@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DeptosComponent } from './deptos/deptos.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { CheckinComponent } from './checkin/checkin.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ChecklistComponent } from './checklist/checklist.component';
 
 const routes: Routes = [
   {
@@ -12,6 +15,18 @@ const routes: Routes = [
   {
     path: 'reservas',
     component: BookingsComponent,
+  },
+  {
+    path: 'checkin',
+    component: CheckinComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
+  {
+    path: 'checklist',
+    component: ChecklistComponent,
   }
 ]
 
