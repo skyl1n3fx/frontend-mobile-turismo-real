@@ -9,7 +9,21 @@ export class BookingsComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  bookings:object[]=[
+    {cliente: "Lucas Menares", rut: "19.410.215-1", hotel: "Gran Avenida", checkIn: "10/10/2022", estadoCheckIn: "Pendiente", checkOut: "12/10/2022", estadoCheckOut: "Pendiente", direccion: "Calle prueba #123"},
+    {cliente: "Jorge Quintui", rut: "20.123.456-1", hotel: "Gran Avenida", checkIn: "12/10/2022", estadoCheckIn: "Pendiente", checkOut: "14/10/2022", estadoCheckOut: "Pendiente", direccion: "Calle prueba #123",
+  acompaniantes: [
+    {nombre: "Juan"},
+    {nombre: "José"}
+  ],
+  servicios: [
+    {nombre: "Transporte Ida"},
+    {nombre: "Transporte Vuelta"},
+  ]}
+  ];
 
 
 

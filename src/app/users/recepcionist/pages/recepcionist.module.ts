@@ -4,15 +4,22 @@ import { IonicModule } from '@ionic/angular';
 import { HomeComponent } from './home/home.component';
 import { DeptosComponent } from './deptos/deptos.component';
 import { RecepcionistRoutingModule } from './recepcionist-routing.module';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { BookingsComponent } from './bookings/bookings.component';
+import { CheckinComponent } from './checkin/checkin.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ChecklistComponent } from './checklist/checklist.component';
 
 @NgModule({
-  declarations: [HomeComponent,DeptosComponent],
+  declarations: [HomeComponent,DeptosComponent, BookingsComponent, CheckinComponent, CheckoutComponent, ChecklistComponent],
   imports: [
     CommonModule,
     IonicModule,
-    RecepcionistRoutingModule
+    RecepcionistRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class RecepcionistModule { }
