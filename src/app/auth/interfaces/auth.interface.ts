@@ -1,17 +1,18 @@
 export interface AuthI {
-    message: string;
-    token:   string;
-    user:    User;
-   }
-   
-   export interface User {
-    email: string;
-    image: string;
-    role:  Role;
-   }
-   
-   export interface Role {
-    description: string;
-    id:          number;
-   }
-   
+  token: string;
+  user: User;
+}
+
+export interface User {
+  pk: number;
+  uid: number;
+  email: string;
+  role: Role;
+  image: string;
+  position: Role;
+}
+
+export interface Role {
+  id: number;
+  description: string;
+}

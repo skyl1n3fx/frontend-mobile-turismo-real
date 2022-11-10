@@ -88,9 +88,7 @@ body{
     text-decoration: none;
     color:$turismo-primary-1;
 }
-.navbar{
-    position:relative;
-}
+
 .navbar-nav li a{
     font-size: 1.7rem;
 }
@@ -121,6 +119,22 @@ body{
 .info-active-reservation a{
     text-decoration: none;
     color: $turismo-white-1 !important;
+}
+
+.info-success-reservation{
+  border-top-right-radius: 5px;
+  border-top-left-radius:5px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #0a8d12ee;
+  height: 100px;
+  margin-top: 8px;
+  color: $turismo-white-1;
+  padding: 3px 8px;
+}
+.info-success-reservation a{
+  text-decoration: none;
+  color: $turismo-white-1 !important;
 }
 
 .active-reserve-receptionist-content{

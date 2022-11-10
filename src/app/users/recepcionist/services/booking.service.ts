@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
+import { Bookings } from '../../interfaces/bookings.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class BookingService {
 
   constructor(private http : HttpClient) { }
 
-  getBooking():Observable<any>{
-    return this.http.get(`${ this.BASE_URL } /account/pago/`).pipe(retry(3));
+  getBooking(id: number):Observable<any>{
+    return this.http.get(`${ this.BASE_URL }/business-api/booking/booking-receptionist/?pk=${id}`).pipe(retry(3));
   }
 
 

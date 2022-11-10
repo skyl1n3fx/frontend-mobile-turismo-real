@@ -10,24 +10,29 @@ import { ChecklistComponent } from './checklist/checklist.component';
 const routes: Routes = [
   {
     path: '',
-    component: DeptosComponent,
+    component: HomeComponent,
+    children: [
+      { path: 'home',
+        component: DeptosComponent
+      },
+      {
+        path: 'reservas',
+        component: BookingsComponent,
+      },
+      {
+        path: 'checkin',
+        component: CheckinComponent,
+      },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+      },
+      {
+        path: 'checklist',
+        component: ChecklistComponent,
+      }
+    ]
   },
-  {
-    path: 'reservas',
-    component: BookingsComponent,
-  },
-  {
-    path: 'checkin',
-    component: CheckinComponent,
-  },
-  {
-    path: 'checkout',
-    component: CheckoutComponent,
-  },
-  {
-    path: 'checklist',
-    component: ChecklistComponent,
-  }
 ]
 
 @NgModule({

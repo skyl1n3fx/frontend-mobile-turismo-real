@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalstorageService } from 'src/app/services/browser_data/localstorage.service';
+import { Bookings } from 'src/app/users/interfaces/bookings.interface';
 import { BookingService } from '../../services/booking.service';
 @Component({
   selector: 'app-bookings',
@@ -8,26 +10,18 @@ import { BookingService } from '../../services/booking.service';
 })
 export class BookingsComponent implements OnInit {
 
-  constructor(private router: Router, private svBooking : BookingService) { }
+  constructor(private router: Router, private svBooking : BookingService, private localStorageManagement : LocalstorageService) { }
 
   ngOnInit() {
+    this.getBookings();
   }
 
-  bookings:object[]=[
-    {cliente: "Lucas Menares", rut: "19.410.215-1", hotel: "Gran Avenida", checkIn: "10/10/2022", estadoCheckIn: "Pendiente", checkOut: "12/10/2022", estadoCheckOut: "Pendiente", direccion: "Calle prueba #123"},
-    {cliente: "Jorge Quintui", rut: "20.123.456-1", hotel: "Gran Avenida", checkIn: "12/10/2022", estadoCheckIn: "Pendiente", checkOut: "14/10/2022", estadoCheckOut: "Pendiente", direccion: "Calle prueba #123",
-  acompaniantes: [
-    {nombre: "Juan"},
-    {nombre: "José"}
-  ],
-  servicios: [
-    {nombre: "Transporte Ida"},
-    {nombre: "Transporte Vuelta"},
-  ]}
-  ];
+  bookings:Bookings[] = [];
 
   getBookings(){
-    this.svBooking.getBooking().subscribe(
+    const userLocalStorage = this.localStorageManagement.get("usuario");
+    console.log(userLocalStorage.user.pk);
+    this.svBooking.getBooking(userLocalStorage.user.pk).subscribe(
       (data) => {
         this.bookings = data;
         console.log(data);

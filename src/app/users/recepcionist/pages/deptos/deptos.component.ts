@@ -10,9 +10,4 @@ export class DeptosComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {}
-
-
-  goToBookings() {
-    this.router.navigate(['/recepcionista/reservas']);
-  }
 }

@@ -18,7 +18,7 @@ export class AppComponent {
     .iterations(1)
     .easing('ease-out')
     .fromTo('opacity' , '1', '0.0')
-    
+
     var anim2 = this.animationCtrl.create()
     .addElement(opts.enteringEl)
     .duration(1000)

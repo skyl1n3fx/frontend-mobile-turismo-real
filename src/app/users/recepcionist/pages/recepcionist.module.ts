@@ -10,16 +10,18 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { CheckinComponent } from './checkin/checkin.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ChecklistComponent } from './checklist/checklist.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RecepcionistHeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [HomeComponent,DeptosComponent, BookingsComponent, CheckinComponent, CheckoutComponent, ChecklistComponent],
+  declarations: [HomeComponent, DeptosComponent, BookingsComponent, CheckinComponent, CheckoutComponent, ChecklistComponent, NavbarComponent, RecepcionistHeaderComponent],
   imports: [
     CommonModule,
     IonicModule,
     RecepcionistRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class RecepcionistModule { }
