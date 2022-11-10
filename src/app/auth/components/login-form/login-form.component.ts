@@ -29,11 +29,11 @@ export class LoginFormComponent implements OnInit {
     ) {
     this.loginForm = this.formBuilder.group({
 
-      userEmail : new FormControl(null,Validators.compose([Validators.required, Validators.maxLength(50),Validators.minLength(3),
+      userEmail : new FormControl('recepcionista1@gmail.com',Validators.compose([Validators.required, Validators.maxLength(50),Validators.minLength(3),
         Validators.pattern(this.vs.userEmailPattern) // Expresión Regular para validar el Email
       ])),
 
-      userPassword : new FormControl(null, Validators.compose([Validators.required,Validators.minLength(7),Validators.maxLength(20),
+      userPassword : new FormControl('Recepcionista123!', Validators.compose([Validators.required,Validators.minLength(7),Validators.maxLength(20),
         Validators.pattern(this.vs.userPasswordPattern)
       ]))
 
