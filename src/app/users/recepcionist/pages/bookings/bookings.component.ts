@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BookingService } from '../../services/booking.service';
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class BookingsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private svBooking : BookingService) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,15 @@ export class BookingsComponent implements OnInit {
   ]}
   ];
 
-
+  getBookings(){
+    this.svBooking.getBooking().subscribe(
+      (data) => {
+        this.bookings = data;
+        console.log(data);
+      },(e) => {
+        console.log(e);
+      }
+    )
+  }
 
 }
