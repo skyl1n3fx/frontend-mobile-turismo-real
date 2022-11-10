@@ -12,7 +12,8 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: 'home',
+      { 
+        path: 'deptos',
         component: DeptosComponent
       },
       {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'checklist',
         component: ChecklistComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'deptos'
       }
     ]
   },
