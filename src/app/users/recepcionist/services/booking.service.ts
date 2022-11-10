@@ -20,5 +20,11 @@ export class BookingService {
     return this.http.get(`${ this.BASE_URL }/business-api/booking/booking-receptionist/?pk=${id}`).pipe(retry(3));
   }
 
+  getBookingDetail(id: number):Observable<any>{
+    return this.http.get(`${ this.BASE_URL }/business-api/booking/${id}`);
+  }
 
+  changeCheckin(id: number, state: string):Promise<any>{
+    return this.http.put(`${ this.BASE_URL }/business-api/booking/${id}/change-checkin/`, {estado: state}).toPromise( );
+  }
 }

@@ -42,7 +42,7 @@
                     <td class="td-description">{{booking.vivienda.nombre}}</td>
                 </tr>
                 <tr>
-                    <td class="td-title">Check In <a href="/recepcionista/checkin"><img src="../../../../../assets/images/pencil.png"></a>
+                    <td (click)="goToCheckIn(booking.id)" class="td-title">Check In><img src="../../../../../assets/images/pencil.png">
                     </td>
                 </tr>
                 <tr>

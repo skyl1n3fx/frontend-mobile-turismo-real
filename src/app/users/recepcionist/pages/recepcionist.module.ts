@@ -22,6 +22,7 @@ import { RecepcionistHeaderComponent } from './header/header.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-  ]
+  ],
+  providers: [BookingsComponent]
 })
 export class RecepcionistModule { }

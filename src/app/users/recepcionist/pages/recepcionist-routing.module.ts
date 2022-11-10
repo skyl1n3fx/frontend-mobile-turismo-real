@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { 
+      {
         path: '',
         component: DeptosComponent
       },
@@ -21,7 +21,7 @@ const routes: Routes = [
         component: BookingsComponent,
       },
       {
-        path: 'checkin',
+        path: 'checkin/:id',
         component: CheckinComponent,
       },
       {
