@@ -25,7 +25,7 @@ const routes: Routes = [
         component: CheckinComponent,
       },
       {
-        path: 'checkout',
+        path: 'checkout/:id',
         component: CheckoutComponent,
       },
       {

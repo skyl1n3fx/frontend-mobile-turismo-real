@@ -27,4 +27,8 @@ export class BookingService {
   changeCheckin(id: number, state: string):Promise<any>{
     return this.http.put(`${ this.BASE_URL }/business-api/booking/${id}/change-checkin/`, {estado: state}).toPromise( );
   }
+
+  changeCheckout(id: number, state: string):Promise<any>{
+    return this.http.put(`${ this.BASE_URL }/business-api/booking/${id}/change-checkout/`, {estado: state}).toPromise( );
+  }
 }

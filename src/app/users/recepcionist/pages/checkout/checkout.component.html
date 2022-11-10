@@ -1,106 +1,71 @@
 <ion-content>
 <recepcionist-header></recepcionist-header>
-<div class="container">
+<div class="container" *ngIf="bookingDetail != null">
     <div class="row">
         <div class="col-12">
             <div class="active-reserve-receptionist-content">
-                <div class="info-check">
-                    <p class="description-check">Lucas menares <br>Gran avenida</p>
-                    <a class="btn-return-reservation" href=""><img src="../../../../../assets/images/Vector 16.png"></a>
-                    <p class="title-check">Check Out</p>
-                </div>
-                <div class="info-table">
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-                                <td class="td-title">Cliente</td>
-                            </tr>
-                            <tr>
-                                <td class="td-description">Lucas Menares</td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Rut</td>
-                            </tr>
-                            <tr>
-                                <td class="td-description">1.234.567-4</td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Hotel</td>
-                            </tr>
-                            <tr>
-                                <td class="td-description">Grand Avenida</td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Estado Check Out
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-description status">Pendiente
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Fecha Check Out
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-description">20/10/2022
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Dirección Hotel</td>
-                            </tr>
-                            <tr>
-                                <td class="td-description">Calle Prueba #123, Santiago</td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Acompañantes</td>
-                            </tr>
-                            <tr>
-                                <td class="td-description companion">Niño 1
-                                  <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-description companion">Niño 2
-                                  <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-description companion">Acompañante 3
-                                  <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Servicios Extra</td>
-                            </tr>
-                            <tr>
-                                <td class="td-description service">Transporte
-                                  <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-description service">Tour
-                                  <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-title">Check List Estado
-                                  <a href="/recepcionista/checklist">
-                                    <img src="../../../../../assets/images/pencil.png">
-                                  </a>
-                                </td>
+              <div class="info-check">
+                <p class="description-check">{{bookingDetail.cliente.nombre}} <br>{{bookingDetail.vivienda.nombre}}</p>
+                <a class="btn-return-reservation" href="/recepcionista/reservas"><img src="../../../../../assets/images/Vector 16.png"></a>
+                <p class="title-check">Check In</p>
+            </div>
+            <div class="info-table">
+                <table class="table table-striped table-bordered">
+                  <tbody>
+                      <tr>
+                        <td class="td-title">Cliente</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description">{{bookingDetail.cliente.nombre}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-title">Rut / Pasaporte</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description">{{bookingDetail.cliente.dni}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-title">Hotel</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description">{{bookingDetail.vivienda.nombre}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-title">Dirección Hotel</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description">{{bookingDetail.vivienda.direccion}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-title">Estado Check Out</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description status">{{bookingDetail.estado_checkout}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-title">Fecha Check Out</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description">{{bookingDetail.check_out}}</td>
+                      </tr>
+                          <tr>
+                              <td class="td-title">Check List Estado
+                                <a href="/recepcionista/checklist">
+                                  <img src="../../../../../assets/images/pencil.png">
+                                </a>
+                              </td>
                             </tr>
                             <tr>
                                 <td class="td-title">Monto Multa</td>
                             </tr>
                             <tr>
-                                <td class="td-description fine amount">$150.000
+                                <td class="td-description fine amount">PENDIENTE
                                 </td>
                             </tr>
                             <tr>
                                 <td class="td-buttons d-flex">
-                                    <button type="button" class="btn-danger">Rechazar</button>
-                                    <button type="button" class="btn-success">Aceptar</button>
+                                    <button type="button" class="btn-danger" (click)="changeCheckout('MULTADO')">Multar</button>
+                                    <button type="button" class="btn-success" (click)="changeCheckout('COMPLETADO')">Aceptar</button>
                                 </td>
                             </tr>
                         </tbody>

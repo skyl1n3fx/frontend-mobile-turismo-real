@@ -40,4 +40,8 @@ export class BookingsComponent implements OnInit {
     this.router.navigate(['/recepcionista/checkin',bookingId]);
   }
 
+  goToCheckOut(bookingId: number){
+    this.router.navigate(['/recepcionista/checkout',bookingId]);
+  }
+
 }
