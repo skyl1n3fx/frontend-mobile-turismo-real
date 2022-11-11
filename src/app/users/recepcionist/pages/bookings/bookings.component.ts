@@ -20,7 +20,7 @@ export class BookingsComponent implements OnInit {
     this.getBookings();
   }
 
-  bookings:Bookings[] = [];
+  bookings:Bookings[] = null;
   test: string = "";
 
   getBookings(){

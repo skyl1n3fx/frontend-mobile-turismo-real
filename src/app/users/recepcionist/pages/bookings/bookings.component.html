@@ -9,7 +9,7 @@
               <label for="formGroupExampleInput2" class="col-form-label fw-bold me-2">buscar:</label>
               <input type="text" id="formGroupExampleInput2" class="form-control">
           </div> -->
-        <ng-container *ngIf="bookings.length > 0">
+        <ng-container *ngIf="bookings && bookings?.length > 0">
           <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
             <div [ngClass]="{'mt-3' : i == 0, 'info-active-reservation' : booking.estado_checkin == 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin == 'PAGADO' }">
               <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
@@ -105,7 +105,7 @@
               </div>
             </ng-container>
           </ng-container>
-          <ng-container *ngIf="bookings.length <= 0">
+          <ng-container *ngIf="bookings && bookings?.length <= 0">
             <p class="text-center">No tienes reservas activas</p>
           </ng-container>
           </div>
