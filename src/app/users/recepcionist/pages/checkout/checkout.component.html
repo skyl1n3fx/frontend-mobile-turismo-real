@@ -7,7 +7,7 @@
               <div class="info-check">
                 <p class="description-check">{{bookingDetail.cliente.nombre}} <br>{{bookingDetail.vivienda.nombre}}</p>
                 <a class="btn-return-reservation" href="/recepcionista/reservas"><img src="../../../../../assets/images/Vector 16.png"></a>
-                <p class="title-check">Check In</p>
+                <p class="title-check">Check Out</p>
             </div>
             <div class="info-table">
                 <table class="table table-striped table-bordered">
@@ -64,8 +64,8 @@
                             </tr>
                             <tr>
                                 <td class="td-buttons d-flex">
-                                    <button type="button" class="btn-danger" (click)="changeCheckout('MULTADO')">Multar</button>
-                                    <button type="button" class="btn-success" (click)="changeCheckout('COMPLETADO')">Aceptar</button>
+                                  <button type="button" class="btn-danger" (click)="changeCheckoutStatus('¿Estas seguro de rechazar?', 'CANCELADO')">Rechazar</button>
+                                  <button type="button" class="btn-success" (click)="changeCheckoutStatus('¿Estas seguro de aceptar?', 'COMPLETADO')">Aceptar</button>
                                 </td>
                             </tr>
                         </tbody>

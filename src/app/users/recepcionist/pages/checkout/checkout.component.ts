@@ -3,6 +3,7 @@ import { ActivatedRoute ,Router } from '@angular/router';
 import { BookingDetailI } from 'src/app/users/interfaces/bookingDetail.interface';
 import { priceFormat } from 'src/app/utils';
 import { BookingService } from '../../services/booking.service';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -10,14 +11,41 @@ import { BookingService } from '../../services/booking.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute) { }
+  bookingDetail: BookingDetailI = null;
+  priceFormat: Function = priceFormat;
+
+  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
     this.initCheckout();
   }
 
-  bookingDetail: BookingDetailI = null;
-  priceFormat: Function = priceFormat;
+  async changeCheckoutStatus(header: string, action: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Si',
+          role: 'confirm',
+          handler: () => {
+            this.changeCheckout(action)
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
 
   initCheckout(){
     const bookingId = this.activatedRoute.snapshot.params.id;

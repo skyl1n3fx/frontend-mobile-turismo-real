@@ -4,6 +4,7 @@ import { BookingService } from '../../services/booking.service';
 import { BookingDetailI } from 'src/app/users/interfaces/bookingDetail.interface';
 import { priceFormat } from 'src/app/utils';
 import { BookingsComponent } from '../bookings/bookings.component';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
@@ -11,14 +12,40 @@ import { BookingsComponent } from '../bookings/bookings.component';
 })
 export class CheckinComponent implements OnInit {
 
-  constructor(private router: Router, private svBooking : BookingService, private activatedRoute: ActivatedRoute, private bookingsComponent: BookingsComponent) { }
+  constructor(private router: Router, private svBooking : BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
     this.initCheckin();
   }
 
   bookingDetail: BookingDetailI = null;
   priceFormat: Function = priceFormat;
+
+  async changeCheckinStatus(header: string, action: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'Si',
+          role: 'confirm',
+          handler: () => {
+            this.changeCheckin(action)
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
 
   initCheckin(){
     const bookingId = this.activatedRoute.snapshot.params.id;

@@ -82,8 +82,8 @@
                   </tr>
                   <tr>
                     <td class="td-buttons d-flex">
-                      <button type="button" class="btn-danger" (click)="changeCheckin('CANCELADO')">Rechazar</button>
-                      <button type="button" class="btn-success" (click)="changeCheckin('PAGADO')">Aceptar</button>
+                      <button type="button" class="btn-danger" (click)="changeCheckinStatus('¿Estas seguro de rechazar?', 'CANCELADO')">Rechazar</button>
+                      <button type="button" class="btn-success" (click)="changeCheckinStatus('¿Estas seguro de aceptar?', 'PAGADO')">Aceptar</button>
                     </td>
                   </tr>
               </tbody>

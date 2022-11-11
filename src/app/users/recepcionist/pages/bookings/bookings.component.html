@@ -9,99 +9,104 @@
               <label for="formGroupExampleInput2" class="col-form-label fw-bold me-2">buscar:</label>
               <input type="text" id="formGroupExampleInput2" class="form-control">
           </div> -->
-        <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
-          <div [ngClass]="{'mt-3' : i == 0, 'info-active-reservation' : booking.estado_checkin == 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin == 'PAGADO' }">
-            <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
-              [attr.aria-controls]="'collapseExample' + (i + 1)">
-              <p>{{booking.cliente.nombre}} <br>{{booking.vivienda.nombre}}</p>
-              <div class="d-flex justify-content-between">
-                <p>{{booking.check_in}}</p>
-                <p>{{booking.check_out}}</p>
-              </div>
-            </a>
-          </div>
-          <div class="info-table collapse" [attr.id]="'collapseExample' + (i + 1)">
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                    <td class="td-title">Cliente</td>
-                </tr>
-                <tr>
-                    <td class="td-description">{{booking.cliente.nombre}}</td>
-                </tr>
-                <tr>
-                    <td class="td-title">Rut / Pasaporte</td>
-                </tr>
-                <tr>
-                    <td class="td-description">{{booking.cliente.dni}}</td>
-                </tr>
-                <tr>
-                    <td class="td-title">Hotel</td>
-                </tr>
-                <tr>
-                    <td class="td-description">{{booking.vivienda.nombre}}</td>
-                </tr>
-                <tr>
-                    <td (click)="goToCheckIn(booking.id)" class="td-title">Check In>
-                      <img src="../../../../../assets/images/pencil.png">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-description">{{booking.check_in}}
-                      <img *ngIf="booking.estado_checkin == 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                      <img *ngIf="booking.estado_checkin == 'PAGADO'" src="../../../../../assets/images/check.svg">
-                    </td>
-                </tr>
-                <tr>
-                    <td (click)="goToCheckOut(booking.id)" class="td-title">Check Out
-                      <img src="../../../../../assets/images/pencil.png">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-description">{{booking.check_out}}
-                      <img *ngIf="booking.estado_checkout == 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                      <img *ngIf="booking.estado_checkout == 'COMPLETADO'" src="../../../../../assets/images/check.svg">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-title">Dirección Hotel</td>
-                </tr>
-                <tr>
-                    <td class="td-description">{{booking.vivienda.direccion}}</td>
-                </tr>
-                <tr *ngIf="booking.acompaniantes.length > 0">
-                    <td class="td-title">Acompañantes</td>
-                </tr>
-                <ng-container *ngFor="let acompaniante of booking.acompaniantes; index as i;">
-                <tr>
-                    <td class="td-description companion">{{acompaniante.nombre}}
-                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-description companion">{{acompaniante.dni}}
-                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                    </td>
-                </tr>
-                </ng-container>
-                <tr *ngIf="booking.servicios">
-                    <td class="td-title">Servicios Extra</td>
-                </tr>
-                <ng-container *ngFor="let servicio of booking.servicios; index as i;">
-                  <tr>
-                    <td class="td-description service">{{servicio.tipo_tranporte}}
-                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-description service">{{servicio.nombre}}
-                      <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                    </td>
-                </tr>
-                </ng-container>
-              </tbody>
-            </table>
+        <ng-container *ngIf="bookings.length > 0">
+          <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
+            <div [ngClass]="{'mt-3' : i == 0, 'info-active-reservation' : booking.estado_checkin == 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin == 'PAGADO' }">
+              <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
+                [attr.aria-controls]="'collapseExample' + (i + 1)">
+                <p>{{booking.cliente.nombre}} <br>{{booking.vivienda.nombre}}</p>
+                <div class="d-flex justify-content-between">
+                  <p>{{booking.check_in}}</p>
+                  <p>{{booking.check_out}}</p>
+                </div>
+              </a>
             </div>
+            <div class="info-table collapse" [attr.id]="'collapseExample' + (i + 1)">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                      <td class="td-title">Cliente</td>
+                  </tr>
+                  <tr>
+                      <td class="td-description">{{booking.cliente.nombre}}</td>
+                  </tr>
+                  <tr>
+                      <td class="td-title">Rut / Pasaporte</td>
+                  </tr>
+                  <tr>
+                      <td class="td-description">{{booking.cliente.dni}}</td>
+                  </tr>
+                  <tr>
+                      <td class="td-title">Hotel</td>
+                  </tr>
+                  <tr>
+                      <td class="td-description">{{booking.vivienda.nombre}}</td>
+                  </tr>
+                  <tr>
+                      <td class="td-title">Check In
+                        <img (click)="goToCheckIn(booking.id)" *ngIf="booking.estado_checkin != 'PAGADO'" src="../../../../../assets/images/pencil.png">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td-description">{{booking.check_in}}
+                        <img *ngIf="booking.estado_checkin == 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
+                        <img *ngIf="booking.estado_checkin == 'PAGADO'" src="../../../../../assets/images/check.svg">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td-title">Check Out
+                        <img (click)="goToCheckOut(booking.id)" *ngIf="booking.estado_checkin != 'PENDIENTE'" src="../../../../../assets/images/pencil.png">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td-description">{{booking.check_out}}
+                        <img *ngIf="booking.estado_checkout == 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
+                        <img *ngIf="booking.estado_checkout == 'COMPLETADO'" src="../../../../../assets/images/check.svg">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td-title">Dirección Hotel</td>
+                  </tr>
+                  <tr>
+                      <td class="td-description">{{booking.vivienda.direccion}}</td>
+                  </tr>
+                  <tr *ngIf="booking.acompaniantes.length > 0">
+                      <td class="td-title">Acompañantes</td>
+                  </tr>
+                  <ng-container *ngFor="let acompaniante of booking.acompaniantes; index as i;">
+                  <tr>
+                      <td class="td-description companion">{{acompaniante.nombre}}
+                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td-description companion">{{acompaniante.dni}}
+                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                      </td>
+                  </tr>
+                  </ng-container>
+                  <tr *ngIf="booking.servicios">
+                      <td class="td-title">Servicios Extra</td>
+                  </tr>
+                  <ng-container *ngFor="let servicio of booking.servicios; index as i;">
+                    <tr>
+                      <td class="td-description service">{{servicio.tipo_tranporte}}
+                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="td-description service">{{servicio.nombre}}
+                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
+                      </td>
+                  </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+              </div>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="bookings.length <= 0">
+            <p class="text-center">No tienes reservas activas</p>
           </ng-container>
           </div>
         </div>
