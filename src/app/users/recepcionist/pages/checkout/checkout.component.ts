@@ -3,7 +3,8 @@ import { ActivatedRoute ,Router } from '@angular/router';
 import { BookingDetailI } from 'src/app/users/interfaces/bookingDetail.interface';
 import { priceFormat } from 'src/app/utils';
 import { BookingService } from '../../services/booking.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { MsgService } from '../../../../services/messages/msg.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -14,7 +15,7 @@ export class CheckoutComponent implements OnInit {
   bookingDetail: BookingDetailI = null;
   priceFormat: Function = priceFormat;
 
-  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
+  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, private loadingController : LoadingController, private msg : MsgService) { }
 
   ngOnInit() {
   }
@@ -69,13 +70,22 @@ export class CheckoutComponent implements OnInit {
   }
 
   async changeCheckout(state){
+    
+    const loading = await this.loadingController.create({
+      message: 'Cargando ...'
+    });
+
+    await loading.present();
     try {
       const response = await this.svBooking.changeCheckout(this.bookingDetail.id, state)
       if(response){
+        loading.dismiss();
         this.router.navigate(['/recepcionista/reservas']);
       }
     } catch (error) {
+      loading.dismiss();
       console.log(error);
+      this.msg.createAlert('Oops, lo sentimos! :(','El servicio no se encuentra disponible.','');
     }
   }
 }
