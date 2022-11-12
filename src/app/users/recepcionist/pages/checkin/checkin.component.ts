@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { BookingService } from '../../services/booking.service';
@@ -12,7 +13,10 @@ import { AlertController } from '@ionic/angular';
 })
 export class CheckinComponent implements OnInit {
 
-  constructor(private router: Router, private svBooking : BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
+  bookingDetail: BookingDetailI = null;
+  priceFormat: (price: number) => string | 0 = priceFormat;
+
+  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -21,12 +25,9 @@ export class CheckinComponent implements OnInit {
     this.initCheckin();
   }
 
-  bookingDetail: BookingDetailI = null;
-  priceFormat: Function = priceFormat;
-
   async changeCheckinStatus(header: string, action: string) {
     const alert = await this.alertController.create({
-      header: header,
+      header,
       buttons: [
         {
           text: 'No',
@@ -38,7 +39,7 @@ export class CheckinComponent implements OnInit {
           text: 'Si',
           role: 'confirm',
           handler: () => {
-            this.changeCheckin(action)
+            this.changeCheckin(action);
           },
         },
       ],
@@ -57,7 +58,7 @@ export class CheckinComponent implements OnInit {
         console.log(e);
         this.router.navigate(['/recepcionista/reservas']);
       }
-    )
+    );
   }
 
   getServicesPrice(){
@@ -70,7 +71,7 @@ export class CheckinComponent implements OnInit {
 
   async changeCheckin(state){
     try {
-      const response = await this.svBooking.changeCheckin(this.bookingDetail.id, state)
+      const response = await this.svBooking.changeCheckin(this.bookingDetail.id, state);
       if(response){
         this.router.navigate(['/recepcionista/reservas']);
       }

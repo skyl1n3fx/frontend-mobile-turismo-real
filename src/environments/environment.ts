@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  TURISMO_REAL_API: 'http://localhost:8000',
+  TURISMO_REAL_API: 'http://192.168.100.32:8000',
   PAY_API : 'http://localhost:8080'
 };
 

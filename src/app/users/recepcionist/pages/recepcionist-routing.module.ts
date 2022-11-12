@@ -29,7 +29,7 @@ const routes: Routes = [
         component: CheckoutComponent,
       },
       {
-        path: 'checklist',
+        path: 'checklist/:id',
         component: ChecklistComponent,
       },
       {
@@ -38,7 +38,7 @@ const routes: Routes = [
       }
     ]
   },
-]
+];
 
 @NgModule({
   declarations: [],
