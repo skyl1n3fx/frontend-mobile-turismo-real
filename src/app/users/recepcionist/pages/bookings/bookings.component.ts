@@ -16,7 +16,7 @@ export class BookingsComponent implements OnInit {
   constructor(private router: Router, private svBooking: BookingService, private localStorageManagement: LocalstorageService) { }
 
   ngOnInit() {
-
+    this.ionViewWillEnter();
   }
 
   ionViewWillEnter(){

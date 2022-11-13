@@ -19,6 +19,7 @@ export class CheckinComponent implements OnInit {
   constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
 
   ngOnInit() {
+    this.ionViewWillEnter();
   }
 
   ionViewWillEnter(){

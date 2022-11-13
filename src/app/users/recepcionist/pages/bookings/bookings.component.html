@@ -1,5 +1,3 @@
-<ion-content [fullscreen]="true">
-<recepcionist-header></recepcionist-header>
 <div class="container">
     <div class="row">
       <div class="col-12">
@@ -11,7 +9,7 @@
           </div> -->
         <ng-container *ngIf="bookings && bookings?.length > 0">
           <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
-            <div [ngClass]="{'mt-3' : i == 0, 'info-active-reservation' : booking.estado_checkin == 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin == 'PAGADO' }">
+            <div [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : booking.estado_checkin === 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin === 'PAGADO' }">
               <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
                 [attr.aria-controls]="'collapseExample' + (i + 1)">
                 <p>{{booking.cliente.nombre}} <br>{{booking.vivienda.nombre}}</p>
@@ -44,24 +42,24 @@
                   </tr>
                   <tr>
                       <td class="td-title">Check In
-                        <img (click)="goToCheckIn(booking.id)" *ngIf="booking.estado_checkin != 'PAGADO'" src="../../../../../assets/images/pencil.png">
+                        <img (click)="goToCheckIn(booking.id)" *ngIf="booking.estado_checkin !== 'PAGADO'" src="../../../../../assets/images/pencil.png">
                       </td>
                   </tr>
                   <tr>
                       <td class="td-description">{{booking.check_in}}
-                        <img *ngIf="booking.estado_checkin == 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                        <img *ngIf="booking.estado_checkin == 'PAGADO'" src="../../../../../assets/images/check.svg">
+                        <img *ngIf="booking.estado_checkin === 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
+                        <img *ngIf="booking.estado_checkin === 'PAGADO'" src="../../../../../assets/images/check.svg">
                       </td>
                   </tr>
                   <tr>
                       <td class="td-title">Check Out
-                        <img (click)="goToCheckOut(booking.id)" *ngIf="booking.estado_checkin != 'PENDIENTE'" src="../../../../../assets/images/pencil.png">
+                        <img (click)="goToCheckOut(booking.id)" *ngIf="booking.estado_checkin !== 'PENDIENTE'" src="../../../../../assets/images/pencil.png">
                       </td>
                   </tr>
                   <tr>
                       <td class="td-description">{{booking.check_out}}
-                        <img *ngIf="booking.estado_checkout == 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                        <img *ngIf="booking.estado_checkout == 'COMPLETADO'" src="../../../../../assets/images/check.svg">
+                        <img *ngIf="booking.estado_checkout === 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
+                        <img *ngIf="booking.estado_checkout === 'COMPLETADO'" src="../../../../../assets/images/check.svg">
                       </td>
                   </tr>
                   <tr>
@@ -128,6 +126,4 @@
           </li>
       </ul>
   </nav> -->
-  </div>
-
-</ion-content>
+</div>

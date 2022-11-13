@@ -1,12 +1,11 @@
-<ion-content>
-  <recepcionist-header></recepcionist-header>
+
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="active-reserve-receptionist-content">
                 <div class="info-check">
                     <p class="description-check">Revisa el estado<br> de los productos</p>
-                    <img (click)="this.location.back()" src="../../../../../assets/images/Vector 16.png">
+                    <img (click)="location.back()" src="../../../../../assets/images/Vector 16.png">
                     <p class="title-check mt-5">Valor daños:</p>
                     <p class="mb-3 text-danger">Se cobrará el monto de multa según el valor y estado de cada producto.</p>
                     <div class="row mt-3" *ngFor="let damageInfo of damageTable;">
@@ -46,5 +45,3 @@
         </div>
     </div>
 </div>
-
-</ion-content>

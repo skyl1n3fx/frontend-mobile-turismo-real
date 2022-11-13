@@ -30,7 +30,9 @@ export class ChecklistComponent implements OnInit {
 
   constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, public location: Location) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ionViewWillEnter();
+  }
 
   ionViewWillEnter(){
     this.initProductsDetails();

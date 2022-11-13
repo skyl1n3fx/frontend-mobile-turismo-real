@@ -19,6 +19,7 @@ export class CheckoutComponent implements OnInit {
   constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, private loadingController: LoadingController, private msg: MsgService) { }
 
   ngOnInit() {
+    this.ionViewWillEnter();
   }
 
   ionViewWillEnter(){
