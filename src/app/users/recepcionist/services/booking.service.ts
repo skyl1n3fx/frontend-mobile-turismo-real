@@ -40,4 +40,8 @@ export class BookingService {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     return this.http.post(`${ this.baseUrl }/business-api/booking/products-details/`, {check_list: checkList}).toPromise();
   }
+
+  updateCheckOutPenalty(id: number): Promise<any>{
+    return this.http.get(`${ this.baseUrl }/business-api/booking/${id}/fine/`).toPromise();
+  }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../shared/validators/validators.service';
@@ -16,8 +18,9 @@ export class LoginFormComponent implements OnInit {
 
   public loginForm: FormGroup;
   public errorMessage: string = null;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  public showPassword: Boolean = false;
   private user: UserI;
-  public showPassword : Boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,7 +92,7 @@ export class LoginFormComponent implements OnInit {
         if(e.error.error){
           carga.dismiss();
           this.msgsv.createAlert(e.error.error,'','');
-          return
+          return;
         }
         carga.dismiss();
         this.msgsv.createAlert('¡Oops!, ¡Lo Sentimos!','El servicio no se encuentra disponible =(.','');

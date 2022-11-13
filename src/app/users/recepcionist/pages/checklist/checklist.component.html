@@ -6,7 +6,7 @@
             <div class="active-reserve-receptionist-content">
                 <div class="info-check">
                     <p class="description-check">Revisa el estado<br> de los productos</p>
-                    <a class="btn-return-reservation" href="/recepcionista/checkout"><img src="../../../../../assets/images/Vector 16.png"></a>
+                    <img routerLink="`/recepcionista/checkout/`" src="../../../../../assets/images/Vector 16.png">
                     <p class="title-check mt-5">Valor daños:</p>
                     <p class="mb-3 text-danger">Se cobrará el monto de multa según el valor y estado de cada producto.</p>
                     <div class="row mt-3" *ngFor="let damageInfo of damageTable;">
@@ -18,34 +18,30 @@
                       </div>
                     </div>
                 </div>
-                <ng-container>
-                  <div class="info-table mt-5">
+                <ng-container *ngFor="let room of rooms; index as i;">
+                  <p class="mt-5 text-center">{{room.detalle_sala.tipo_sala.descripcion}}</p>
+                  <div class="info-table">
                       <table class="table table-striped">
                           <tbody>
                               <tr>
-                                  <div class="d-flex justify-content-between" *ngFor="let room of rooms; index as i;" [ngClass]="{'checklist-table-grey' : i % 2 !== 0}">
-                                    <div class="row">
-                                      <div class="col-6 my-auto">
-                                        <p class="part">{{room.detalle_sala.tipo_sala.descripcion}} {{room.pk}} {{room.detalle_producto.producto.nombre}}</p>
-                                      </div>
-                                      <div class="col-6 text-center">
-                                        <label for="customRange2" class="form-label">Daños (1-6)</label>
-                                        <ion-range mode="md" min="1" max="6" step="1" [(ngModel)]="room.detalle_producto.estado.id"></ion-range>
-                                        <label for="customRange2" class="form-label">{{room.detalle_producto.estado.id}}</label>
-                                      </div>
+                                <div class="" *ngFor="let product of room.detalle_sala.tipo_sala.detalle_producto; index as i" [ngClass]="{'checklist-table-grey' : i % 2 !== 0}">
+                                  <div class="row">
+                                    <div class="col-6 my-auto">
+                                      <p class="part">{{product.producto.nombre}} {{product.id_detalle}}</p>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                      <label for="customRange2" class="form-label">Daños (1-6)</label>
+                                      <ion-range mode="md" min="1" max="6" step="1" [(ngModel)]="product.producto.estado.id"></ion-range>
+                                      <label for="customRange2" class="form-label">{{product.producto.estado.id}}</label>
                                     </div>
                                   </div>
-                              </tr>
-
-                              <tr>
-                                  <td class="td-buttons">
-                                      <button type="button" class="btn-save" (click)="saveProducts()">Guardar</button>
-                                  </td>
+                                </div>
                               </tr>
                           </tbody>
                       </table>
                   </div>
                 </ng-container>
+                <button type="button" class="btn-save mt-3 mb-5" (click)="saveProductsAlert('¿Estás seguro?')">Guardar</button>
             </div>
         </div>
     </div>

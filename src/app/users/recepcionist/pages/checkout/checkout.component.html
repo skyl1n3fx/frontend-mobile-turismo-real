@@ -1,6 +1,6 @@
 <ion-content>
 <recepcionist-header></recepcionist-header>
-<div class="container" *ngIf="bookingDetail != null">
+<div class="container" *ngIf="bookingDetail !== null">
     <div class="row">
         <div class="col-12">
             <div class="active-reserve-receptionist-content">
@@ -50,17 +50,14 @@
                       </tr>
                           <tr>
                               <td class="td-title">Check List Estado
-                                <a href="/recepcionista/checklist">
-                                  <img src="../../../../../assets/images/pencil.png">
-                                </a>
+                                <img (click)="goToChecklist()" src="../../../../../assets/images/pencil.png">
                               </td>
                             </tr>
                             <tr>
                                 <td class="td-title">Monto Multa</td>
                             </tr>
                             <tr>
-                                <td class="td-description fine amount">PENDIENTE
-                                </td>
+                                <td class="td-description fine amount">{{bookingDetail.multa}}</td>
                             </tr>
                             <tr>
                                 <td class="td-buttons d-flex">

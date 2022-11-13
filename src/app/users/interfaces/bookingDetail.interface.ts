@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export interface BookingDetailI {
   id: number;
   cliente: Cliente;
@@ -10,10 +11,13 @@ export interface BookingDetailI {
   cant_personas: number;
   acompaniantes: any[];
   servicios: Servicio[];
+  checkin_pk: number;
   check_in: string;
   estado_checkin: string;
+  checkout_pk: number;
   check_out: string;
   estado_checkout: string;
+  multa: number;
 }
 
 export interface Servicio {

@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { BookingService } from '../../services/booking.service';
 import { BookingDetailI } from 'src/app/users/interfaces/bookingDetail.interface';
 import { AlertController } from '@ionic/angular';
 import { priceFormat } from 'src/app/utils';
-import { DamageTableI, ProductDetailI } from 'src/app/users/interfaces/checkList.interface';
+import { CheckListI, DamageTableI } from 'src/app/users/interfaces/checkList.interface';
 @Component({
   selector: 'app-checklist',
   templateUrl: './checklist.component.html',
@@ -13,8 +14,11 @@ import { DamageTableI, ProductDetailI } from 'src/app/users/interfaces/checkList
 })
 export class ChecklistComponent implements OnInit {
 
+  checkOutId: number | null = null;
   bookingDetail: BookingDetailI = null;
-  rooms: ProductDetailI[] = [];
+  rooms: CheckListI[] = [];
+  priceFormat: (price: number) => string | 0 = priceFormat;
+
   damageTable: DamageTableI[] = [
     { code: '1', percent: 0, name: 'Perfecto' },
     { code: '2', percent: 20, name: 'Buen estado' },
@@ -23,9 +27,8 @@ export class ChecklistComponent implements OnInit {
     { code: '5', percent: 80, name: 'Muy dañado' },
     { code: '6', percent: 100, name: 'Inutilizable' },
   ];
-  priceFormat: (price: number) => string | 0 = priceFormat;
 
-  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController) { }
+  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, private location: Location) { }
 
   ngOnInit() {}
 
@@ -33,7 +36,7 @@ export class ChecklistComponent implements OnInit {
     this.initProductsDetails();
   }
 
-  async changeCheckinStatus(header: string, action: string) {
+  async saveProductsAlert(header: string) {
     const alert = await this.alertController.create({
       header,
       buttons: [
@@ -47,7 +50,7 @@ export class ChecklistComponent implements OnInit {
           text: 'Si',
           role: 'confirm',
           handler: () => {
-
+            this.saveProducts();
           },
         },
       ],
@@ -56,23 +59,12 @@ export class ChecklistComponent implements OnInit {
     await alert.present();
   }
 
-  initBookingDetails(){
-    const bookingId = this.activatedRoute.snapshot.params.id;
-    this.svBooking.getBookingDetail(bookingId).subscribe(
-      (data) => {
-        this.bookingDetail = data;
-        console.log(data);
-      },(e) => {
-        console.log(e);
-        this.router.navigate(['/recepcionista/reservas']);
-      }
-    );
-  }
-
   async initProductsDetails(){
-    const bookingId = this.activatedRoute.snapshot.params.id;
+    const apartmentId = this.activatedRoute.snapshot.params.id_vivienda;
+    this.checkOutId = this.activatedRoute.snapshot.params.id_checkout;
+    console.log(this.checkOutId);
     try {
-      const response = await this.svBooking.getProductsDetail(bookingId);
+      const response = await this.svBooking.getProductsDetail(apartmentId);
       this.rooms = response;
       console.log(response);
     } catch (error) {
@@ -82,22 +74,28 @@ export class ChecklistComponent implements OnInit {
   }
 
   async saveProducts(){
-    const productsToChange = this.rooms.map(room => (
-      {
-        pk: room.detalle_producto.id_detalle,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        state_id: room.detalle_producto.estado.id
+    const products = [];
+    this.rooms.forEach(room => (
+      room.detalle_sala.tipo_sala.detalle_producto.forEach(product => {
+        products.push({
+          pk: product.id_detalle,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          state_id: product.producto.estado.id
+        });
       }
-      // room.forEach((product) => {
-      //   this.svBooking.changeProductsState(product.id, product.estado);
-      // });
-      ));
-      try {
-        const response = await this.svBooking.changeProductsState(productsToChange);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
+    )));
+    console.log(products);
+    try {
+      const response = await this.svBooking.changeProductsState(products);
+      if(response){
+        const responsePenalty = await this.svBooking.updateCheckOutPenalty(this.checkOutId);
+        console.log(responsePenalty);
+        this.location.back();
       }
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 

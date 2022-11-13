@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute ,Router } from '@angular/router';
 import { BookingDetailI } from 'src/app/users/interfaces/bookingDetail.interface';
@@ -13,9 +14,9 @@ import { MsgService } from '../../../../services/messages/msg.service';
 export class CheckoutComponent implements OnInit {
 
   bookingDetail: BookingDetailI = null;
-  priceFormat: Function = priceFormat;
+  priceFormat: (price: number) => string | 0 = priceFormat;
 
-  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, private loadingController : LoadingController, private msg : MsgService) { }
+  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, private loadingController: LoadingController, private msg: MsgService) { }
 
   ngOnInit() {
   }
@@ -26,7 +27,7 @@ export class CheckoutComponent implements OnInit {
 
   async changeCheckoutStatus(header: string, action: string) {
     const alert = await this.alertController.create({
-      header: header,
+      header,
       buttons: [
         {
           text: 'No',
@@ -38,7 +39,7 @@ export class CheckoutComponent implements OnInit {
           text: 'Si',
           role: 'confirm',
           handler: () => {
-            this.changeCheckout(action)
+            this.changeCheckout(action);
           },
         },
       ],
@@ -58,7 +59,7 @@ export class CheckoutComponent implements OnInit {
         console.log(e);
         this.router.navigate(['/recepcionista/reservas']);
       }
-    )
+    );
   }
 
   getServicesPrice(){
@@ -70,14 +71,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   async changeCheckout(state){
-    
     const loading = await this.loadingController.create({
       message: 'Cargando ...'
     });
 
     await loading.present();
     try {
-      const response = await this.svBooking.changeCheckout(this.bookingDetail.id, state)
+      const response = await this.svBooking.changeCheckout(this.bookingDetail.id, state);
       if(response){
         loading.dismiss();
         this.router.navigate(['/recepcionista/reservas']);
@@ -87,5 +87,9 @@ export class CheckoutComponent implements OnInit {
       console.log(error);
       this.msg.createAlert('Oops, lo sentimos! :(','El servicio no se encuentra disponible.','');
     }
+  }
+
+  goToChecklist(){
+    this.router.navigate([`/recepcionista/${this.bookingDetail.vivienda.id}/checklist/${this.bookingDetail.checkout_pk}`]);
   }
 }

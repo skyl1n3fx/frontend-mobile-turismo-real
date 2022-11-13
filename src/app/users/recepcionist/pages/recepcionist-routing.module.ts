@@ -29,7 +29,7 @@ const routes: Routes = [
         component: CheckoutComponent,
       },
       {
-        path: 'checklist/:id',
+        path: ':id_vivienda/checklist/:id_checkout',
         component: ChecklistComponent,
       },
       {

@@ -10,7 +10,10 @@ import { BookingService } from '../../services/booking.service';
 })
 export class BookingsComponent implements OnInit {
 
-  constructor(private router: Router, private svBooking : BookingService, private localStorageManagement : LocalstorageService) { }
+  bookings: Bookings[] = null;
+  test = '';
+
+  constructor(private router: Router, private svBooking: BookingService, private localStorageManagement: LocalstorageService) { }
 
   ngOnInit() {
 
@@ -20,11 +23,8 @@ export class BookingsComponent implements OnInit {
     this.getBookings();
   }
 
-  bookings:Bookings[] = null;
-  test: string = "";
-
   getBookings(){
-    const userLocalStorage = this.localStorageManagement.get("usuario");
+    const userLocalStorage = this.localStorageManagement.get('usuario');
     console.log(userLocalStorage.user.pk);
     this.svBooking.getBooking(userLocalStorage.user.pk).subscribe(
       (data) => {
@@ -33,7 +33,7 @@ export class BookingsComponent implements OnInit {
       },(e) => {
         console.log(e);
       }
-    )
+    );
   }
 
   goToCheckIn(bookingId: number){
