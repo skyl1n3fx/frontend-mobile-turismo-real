@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(
-    private authSv : AuthenticationService,
-    private router : Router) { }
+    private authSv: AuthenticationService,
+    private router: Router) { }
 
   ngOnInit() {}
 

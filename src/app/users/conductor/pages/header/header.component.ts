@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'conductor-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],

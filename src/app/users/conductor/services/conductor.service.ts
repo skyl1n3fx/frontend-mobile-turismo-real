@@ -10,7 +10,7 @@ import { Bookings } from '../../interfaces/bookings.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class BookingService {
+export class ConductorService {
 
   private baseUrl = environment.TURISMO_REAL_API;
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { RecepcionistModule } from './users/recepcionist/pages/recepcionist.module';
 
 const routes: Routes = [
   {
@@ -16,6 +15,12 @@ const routes: Routes = [
   {
     path: 'recepcionista',
     loadChildren: () => import('./users/recepcionist/pages/recepcionist.module').then( m => m.RecepcionistModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'conductor',
+    loadChildren: () => import('./users/conductor/pages/conductor.module').then( m => m.ConductorModule),
     canLoad: [ AuthGuard ],
     canActivate: [ AuthGuard ]
   },

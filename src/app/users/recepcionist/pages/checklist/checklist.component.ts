@@ -28,7 +28,7 @@ export class ChecklistComponent implements OnInit {
     { code: '6', percent: 100, name: 'Inutilizable' },
   ];
 
-  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, private location: Location) { }
+  constructor(private router: Router, private svBooking: BookingService, private activatedRoute: ActivatedRoute, private alertController: AlertController, public location: Location) { }
 
   ngOnInit() {}
 
