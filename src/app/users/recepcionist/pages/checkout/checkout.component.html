@@ -53,11 +53,11 @@
                                 <img (click)="goToChecklist()" src="../../../../../assets/images/pencil.png">
                               </td>
                             </tr>
-                            <tr>
+                            <tr *ngIf="bookingDetail.multa > 0">
                                 <td class="td-title">Monto Multa</td>
                             </tr>
-                            <tr>
-                                <td class="td-description fine amount">{{bookingDetail.multa}}</td>
+                            <tr *ngIf="bookingDetail.multa > 0">
+                                <td class="td-description fine amount text-danger">{{priceFormat(bookingDetail.multa)}}</td>
                             </tr>
                             <tr>
                                 <td class="td-buttons d-flex">
