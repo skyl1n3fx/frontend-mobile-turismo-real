@@ -16,8 +16,8 @@ export class ConductorService {
 
   constructor(private http: HttpClient) { }
 
-  getBooking(id: number): Observable<any>{
-    return this.http.get(`${ this.baseUrl }/business-api/booking/booking-receptionist/?pk=${id}`).pipe(retry(3));
+  getRuns(id: number): Observable<any>{
+    return this.http.get(`${ this.baseUrl }/business-api/service/clients?pk=${id}`).pipe(retry(3));
   }
 
   getBookingDetail(id: number): Observable<any>{

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../../auth/services/auth/authentication.service';
-
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -9,21 +7,7 @@ import { AuthenticationService } from '../../../../auth/services/auth/authentica
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(
-    private authSv: AuthenticationService,
-    private router: Router) { }
-
-
-  get auth(){
-    return this.authSv.auth;
-  }
-
+  constructor(private router: Router) { }
 
   ngOnInit() {}
-
-  logout(){
-    this.router.navigate(['../../login/']);
-  }
-
-
 }

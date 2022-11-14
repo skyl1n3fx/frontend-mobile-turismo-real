@@ -1,103 +1,69 @@
-<ion-content [fullscreen]="true">
-<conductor-header></conductor-header>
 <div class="container">
-    <div class="row">
+    <div class="row pb-4">
       <div class="col-12">
         <div class="active-reserve-receptionist-content">
-          <h3 class="reserve-title mt-3">reservas</h3>
+          <h3 class="reserve-title mt-3">carreras</h3>
           <!-- <div class="d-flex justify-content-end mt-3">
               <label for="formGroupExampleInput2" class="col-form-label fw-bold me-2">buscar:</label>
               <input type="text" id="formGroupExampleInput2" class="form-control">
           </div> -->
-        <ng-container *ngIf="bookings && bookings?.length > 0">
-          <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
-            <div [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : booking.estado_checkin === 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin === 'PAGADO' }">
+        <ng-container *ngIf="runs && runs?.length > 0">
+          <ng-container *ngFor="let run of runs; index as i; first as isFirst">
+            <div [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : true}">
               <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
                 [attr.aria-controls]="'collapseExample' + (i + 1)">
-                <p>{{booking.cliente.nombre}} <br>{{booking.vivienda.nombre}}</p>
+                <p>{{run.nombre}} <br>{{run.fecha_inicio}} <br> {{run.tr_ida ? "Ida" : "Vuelta"}}</p>
                 <div class="d-flex justify-content-between">
-                  <p>{{booking.check_in}}</p>
-                  <p>{{booking.check_out}}</p>
+                  <p *ngIf="run.tr_ida">{{run.tr_ida.nombre}}, {{run.tr_ida.ciudad}}</p>
+                  <p *ngIf="run.tr_vuelta">{{run.tr_vuelta.nombre}}, {{run.tr_vuelta.ciudad}}</p>
                 </div>
               </a>
             </div>
             <div class="info-table collapse" [attr.id]="'collapseExample' + (i + 1)">
               <table class="table table-striped">
                 <tbody>
+                  <ng-container>
                   <tr>
-                      <td class="td-title">Cliente</td>
-                  </tr>
-                  <tr>
-                      <td class="td-description">{{booking.cliente.nombre}}</td>
+                    <td class="td-title">Nombre</td>
                   </tr>
                   <tr>
-                      <td class="td-title">Rut / Pasaporte</td>
+                    <td class="td-description">{{run.nombre}}</td>
                   </tr>
                   <tr>
-                      <td class="td-description">{{booking.cliente.dni}}</td>
+                    <td class="td-title">Teléfono</td>
                   </tr>
                   <tr>
-                      <td class="td-title">Hotel</td>
+                    <td class="td-description">{{run.telefono}}</td>
                   </tr>
                   <tr>
-                      <td class="td-description">{{booking.vivienda.nombre}}</td>
+                      <td class="td-title">Fecha</td>
                   </tr>
                   <tr>
-                      <td class="td-title">Check In
-                        <img (click)="goToCheckIn(booking.id)" *ngIf="booking.estado_checkin !== 'PAGADO'" src="../../../../../assets/images/pencil.png">
-                      </td>
+                      <td class="td-description">{{run.fecha_inicio}}</td>
                   </tr>
                   <tr>
-                      <td class="td-description">{{booking.check_in}}
-                        <img *ngIf="booking.estado_checkin === 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                        <img *ngIf="booking.estado_checkin === 'PAGADO'" src="../../../../../assets/images/check.svg">
-                      </td>
+                    <td class="td-title">Hora</td>
                   </tr>
                   <tr>
-                      <td class="td-title">Check Out
-                        <img (click)="goToCheckOut(booking.id)" *ngIf="booking.estado_checkin !== 'PENDIENTE'" src="../../../../../assets/images/pencil.png">
-                      </td>
+                    <td class="td-description">{{run.tr_ida ? "09:00" : "13:00"}}</td>
                   </tr>
                   <tr>
-                      <td class="td-description">{{booking.check_out}}
-                        <img *ngIf="booking.estado_checkout === 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                        <img *ngIf="booking.estado_checkout === 'COMPLETADO'" src="../../../../../assets/images/check.svg">
-                      </td>
+                    <td class="td-title">Ciudad</td>
                   </tr>
                   <tr>
-                      <td class="td-title">Dirección Hotel</td>
+                    <td class="td-description">{{run.tr_ida ? run.tr_ida.ciudad : run.tr_vuelta.ciudad}}</td>
                   </tr>
                   <tr>
-                      <td class="td-description">{{booking.vivienda.direccion}}</td>
-                  </tr>
-                  <tr *ngIf="booking.acompaniantes.length > 0">
-                      <td class="td-title">Acompañantes</td>
-                  </tr>
-                  <ng-container *ngFor="let acompaniante of booking.acompaniantes; index as i;">
-                  <tr>
-                      <td class="td-description companion">{{acompaniante.nombre}}
-                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                      </td>
+                    <td class="td-title">Lugar</td>
                   </tr>
                   <tr>
-                      <td class="td-description companion">{{acompaniante.dni}}
-                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                      </td>
-                  </tr>
-                  </ng-container>
-                  <tr *ngIf="booking.servicios">
-                      <td class="td-title">Servicios Extra</td>
-                  </tr>
-                  <ng-container *ngFor="let servicio of booking.servicios; index as i;">
-                    <tr>
-                      <td class="td-description service">{{servicio.tipo_tranporte}}
-                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                      </td>
+                    <td class="td-description">{{run.tr_ida ? run.tr_ida.nombre : run.tr_vuelta.nombre}}</td>
                   </tr>
                   <tr>
-                      <td class="td-description service">{{servicio.nombre}}
-                        <!-- <img src="../../../../../assets/images/glasses-solid 1.png"> -->
-                      </td>
+                    <td class="td-title">Precio</td>
+                  </tr>
+                  <tr>
+                    <td class="td-description">{{run.tr_ida ? priceFormat(run.tr_ida.precio) : priceFormat(run.tr_vuelta.precio)}}</td>
                   </tr>
                   </ng-container>
                 </tbody>
@@ -105,8 +71,8 @@
               </div>
             </ng-container>
           </ng-container>
-          <ng-container *ngIf="bookings && bookings?.length <= 0">
-            <p class="text-center">No tienes reservas activas</p>
+          <ng-container *ngIf="runs && runs?.length <= 0">
+            <p class="text-center">No tienes carreras activas</p>
           </ng-container>
           </div>
         </div>
@@ -129,5 +95,3 @@
       </ul>
   </nav> -->
   </div>
-
-</ion-content>
