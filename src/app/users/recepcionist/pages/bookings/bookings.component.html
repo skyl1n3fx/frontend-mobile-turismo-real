@@ -2,14 +2,14 @@
     <div class="row">
       <div class="col-12">
         <div class="active-reserve-receptionist-content">
-          <h3 class="reserve-title mt-3">reservas</h3>
+          <h3 class="reserve-title mt-3 animate__animated animate__fadeInLeft animate__fast">reservas</h3>
           <!-- <div class="d-flex justify-content-end mt-3">
               <label for="formGroupExampleInput2" class="col-form-label fw-bold me-2">buscar:</label>
               <input type="text" id="formGroupExampleInput2" class="form-control">
           </div> -->
         <ng-container *ngIf="bookings && bookings?.length > 0">
           <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
-            <div [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : booking.estado_checkin === 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin === 'PAGADO' }">
+            <div class="animate__animated animate__fadeInUp animate__slow" [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : booking.estado_checkin === 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin === 'PAGADO' }">
               <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
                 [attr.aria-controls]="'collapseExample' + (i + 1)">
                 <p>{{booking.cliente.nombre}} <br>{{booking.vivienda.nombre}}</p>
