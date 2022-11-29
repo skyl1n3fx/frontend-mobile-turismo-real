@@ -28,8 +28,9 @@ export class BookingService {
     return this.http.put(`${ this.baseUrl }/business-api/booking/${id}/change-checkin/`, {estado: state}).toPromise( );
   }
 
-  changeCheckout(id: number, state: string): Promise<any>{
-    return this.http.put(`${ this.baseUrl }/business-api/booking/${id}/change-checkout/`, {estado: state}).toPromise( );
+  changeCheckout(id: number, state: string, price?: number): Promise<any>{
+    console.log(price);
+    return this.http.put(`${ this.baseUrl }/business-api/booking/${id}/change-checkout/`, {estado: state, monto: price}).toPromise( );
   }
 
   getProductsDetail(id: number): Promise<any>{

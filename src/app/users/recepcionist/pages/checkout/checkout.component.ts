@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
     this.initCheckout();
   }
 
-  async changeCheckoutStatus(header: string, action: string) {
+  async changeCheckoutStatus(header: string, action: string, price?: number, services?: Array<any>) {
     const alert = await this.alertController.create({
       header,
       buttons: [
@@ -40,7 +40,10 @@ export class CheckoutComponent implements OnInit {
           text: 'Si',
           role: 'confirm',
           handler: () => {
-            this.changeCheckout(action);
+            const servicesPrices = services.map(service => service.precio);
+            const servicesFinalPrice = servicesPrices.reduce((accumulator, current) => accumulator + current, 0);
+            const finalPrice = price + servicesFinalPrice;
+            this.changeCheckout(action, finalPrice);
           },
         },
       ],
@@ -71,14 +74,15 @@ export class CheckoutComponent implements OnInit {
     return price;
   }
 
-  async changeCheckout(state){
+  async changeCheckout(state, price?: number){
     const loading = await this.loadingController.create({
       message: 'Cargando ...'
     });
 
     await loading.present();
     try {
-      const response = await this.svBooking.changeCheckout(this.bookingDetail.id, state);
+      console.log(price);
+      const response = await this.svBooking.changeCheckout(this.bookingDetail.id, state, price);
       if(response){
         loading.dismiss();
         this.router.navigate(['/recepcionista/reservas']);

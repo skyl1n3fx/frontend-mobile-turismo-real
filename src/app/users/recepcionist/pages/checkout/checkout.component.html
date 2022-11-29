@@ -47,6 +47,32 @@
                       <tr>
                         <td class="td-description">{{bookingDetail.check_out}}</td>
                       </tr>
+                      <tr>
+                        <td class="td-title">Monto días</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description">{{priceFormat(bookingDetail.total_pago - bookingDetail.abono)}}</td>
+                      </tr>
+                      <tr *ngIf="bookingDetail.servicios.length > 0">
+                        <td class="td-title">Servicios Extra</td>
+                      </tr>
+                      <ng-container *ngFor="let servicio of bookingDetail.servicios; index as i;">
+                        <tr>
+                          <td class="td-description service">{{servicio.tipo_tranporte}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description service">{{servicio.nombre}}</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description service">{{priceFormat(servicio.precio)}}</td>
+                      </tr>
+                      </ng-container>
+                      <tr>
+                        <td class="td-title">Monto total</td>
+                      </tr>
+                      <tr>
+                        <td class="td-description amount">{{priceFormat(bookingDetail.total_pago + getServicesPrice() - bookingDetail.abono)}}</td>
+                      </tr>
                           <tr>
                               <td class="td-title">Check List Estado
                                 <img (click)="goToChecklist()" src="../../../../../assets/images/pencil.png">
@@ -61,7 +87,7 @@
                             <tr>
                                 <td class="td-buttons d-flex">
                                   <button type="button" class="btn-danger" (click)="changeCheckoutStatus('¿Estas seguro de rechazar?', 'CANCELADO')">Rechazar</button>
-                                  <button type="button" class="btn-success" (click)="changeCheckoutStatus('¿Estas seguro de aceptar?', 'COMPLETADO')">Aceptar</button>
+                                  <button type="button" class="btn-success" (click)="changeCheckoutStatus('¿Estas seguro de aceptar?', 'COMPLETADO', bookingDetail.total_pago + bookingDetail.multa - bookingDetail.abono, bookingDetail.servicios)">Aceptar</button>
                                 </td>
                             </tr>
                         </tbody>
