@@ -40,10 +40,14 @@ export class CheckoutComponent implements OnInit {
           text: 'Si',
           role: 'confirm',
           handler: () => {
-            const servicesPrices = services.map(service => service.precio);
-            const servicesFinalPrice = servicesPrices.reduce((accumulator, current) => accumulator + current, 0);
-            const finalPrice = price + servicesFinalPrice;
-            this.changeCheckout(action, finalPrice);
+            if(action === 'COMPLETADO'){
+              const servicesPrices = services.map(service => service.precio);
+              const servicesFinalPrice = servicesPrices.reduce((accumulator, current) => accumulator + current, 0);
+              const finalPrice = price + servicesFinalPrice;
+              this.changeCheckout(action, finalPrice);
+            } else {
+              this.changeCheckout(action);
+            }
           },
         },
       ],
