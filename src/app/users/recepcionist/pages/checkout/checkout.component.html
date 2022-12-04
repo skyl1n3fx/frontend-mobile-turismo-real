@@ -57,15 +57,24 @@
                         <td class="td-title">Servicios Extra</td>
                       </tr>
                       <ng-container *ngFor="let servicio of bookingDetail.servicios; index as i;">
-                        <tr>
+                        <tr *ngIf="servicio.tipo_servicio === 'TRANSPORTE'">
                           <td class="td-description service">{{servicio.tipo_tranporte}}</td>
-                      </tr>
-                      <tr>
-                        <td class="td-description service">{{servicio.nombre}}</td>
-                      </tr>
-                      <tr>
-                        <td class="td-description service">{{priceFormat(servicio.precio)}}</td>
-                      </tr>
+                        </tr>
+                        <tr *ngIf="servicio.tipo_servicio === 'TOUR'">
+                          <td class="td-description service">TOUR</td>
+                        </tr>
+                        <tr>
+                          <td class="td-description service">{{servicio.nombre}}</td>
+                        </tr>
+                        <tr>
+                          <td class="td-description service">{{'Inicio: ' + servicio.hora_inicio}}</td>
+                        </tr>
+                        <tr>
+                          <td class="td-description service">{{'Término: ' + servicio.hora_termino}}</td>
+                        </tr>
+                        <tr>
+                          <td class="td-description service">{{priceFormat(servicio.precio)}}</td>
+                        </tr>
                       </ng-container>
                       <tr>
                         <td class="td-title">Monto total</td>
