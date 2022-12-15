@@ -12,10 +12,11 @@
             <div [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : true}">
               <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
                 [attr.aria-controls]="'collapseExample' + (i + 1)">
-                <p>{{run.nombre}} <br>{{run.fecha_inicio}} <br> {{run.tr_ida ? "Ida" : "Vuelta"}}</p>
+                <p>{{run.nombre}} <br>{{run.fecha_inicio}} <br> <span *ngIf="run.tipo_servicio == 'TRANSPORTE'">{{run.tr_ida ? "Ida" : "Vuelta"}}</span> <span *ngIf="run.tipo_servicio == 'TOUR'">{{run.tipo_servicio}}</span></p>
                 <div class="d-flex justify-content-between">
-                  <p *ngIf="run.tr_ida">{{run.tr_ida.nombre}}, {{run.tr_ida.ciudad}}</p>
+                  <p *ngIf="run.tr_ida">{{run.tr_ida.nombre}}, <span *ngIf="run.tipo_servicio == 'TRANSPORTE'">{{run.tr_ida.ciudad}}</span></p>
                   <p *ngIf="run.tr_vuelta">{{run.tr_vuelta.nombre}}, {{run.tr_vuelta.ciudad}}</p>
+                  <p *ngIf="run.tipo_servicio == 'TOUR'">{{run.nombre_tour}}</p>
                 </div>
               </a>
             </div>
@@ -41,29 +42,44 @@
                   <tr>
                       <td class="td-description">{{run.fecha_inicio}}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio == 'TRANSPORTE'">
                     <td class="td-title">Hora</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio == 'TRANSPORTE'">
                     <td class="td-description">{{run.tr_ida ? "09:00" : "13:00"}}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio === 'TOUR'">
+                    <td class="td-title">Hora Inicio</td>
+                  </tr>
+                  <tr *ngIf="run.tipo_servicio === 'TOUR'">
+                    <td class="td-description">{{run.hora_inicio}}</td>
+                  </tr>
+                  <tr *ngIf="run.tipo_servicio === 'TOUR'">
+                    <td class="td-title">Hora Término</td>
+                  </tr>
+                  <tr *ngIf="run.tipo_servicio === 'TOUR'">
+                    <td class="td-description">{{run.hora_termino}}</td>
+                  </tr>
+                  <tr *ngIf="run.tipo_servicio === 'TRANSPORTE'">
                     <td class="td-title">Ciudad</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio === 'TRANSPORTE'">
                     <td class="td-description">{{run.tr_ida ? run.tr_ida.ciudad : run.tr_vuelta.ciudad}}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio === 'TRANSPORTE'">
                     <td class="td-title">Lugar</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio === 'TRANSPORTE'">
                     <td class="td-description">{{run.tr_ida ? run.tr_ida.nombre : run.tr_vuelta.nombre}}</td>
                   </tr>
                   <tr>
                     <td class="td-title">Precio</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="run.tipo_servicio === 'TRANSPORTE'">
                     <td class="td-description">{{run.tr_ida ? priceFormat(run.tr_ida.precio) : priceFormat(run.tr_vuelta.precio)}}</td>
+                  </tr>
+                  <tr *ngIf="run.tipo_servicio === 'TOUR'">
+                    <td class="td-description">{{priceFormat(run.precio)}}</td>
                   </tr>
                   </ng-container>
                 </tbody>

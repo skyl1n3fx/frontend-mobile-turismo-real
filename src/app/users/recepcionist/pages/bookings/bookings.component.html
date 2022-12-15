@@ -9,7 +9,7 @@
           </div> -->
         <ng-container *ngIf="bookings && bookings?.length > 0">
           <ng-container *ngFor="let booking of bookings; index as i; first as isFirst">
-            <div class="animate__animated animate__fadeInUp animate__slow" [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : booking.estado_checkin === 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin === 'PAGADO' }">
+            <div class="animate__animated animate__fadeInUp animate__slow" [ngClass]="{'mt-3' : i === 0, 'info-active-reservation' : booking.estado_checkin === 'PENDIENTE' , 'info-success-reservation' : booking.estado_checkin === 'COMPLETADO' }">
               <a data-bs-toggle="collapse" [attr.href]="'#collapseExample' + (i + 1)" aria-expanded="false"
                 [attr.aria-controls]="'collapseExample' + (i + 1)">
                 <p>{{booking.cliente.nombre}} <br>{{booking.vivienda.nombre}}</p>
@@ -42,13 +42,13 @@
                   </tr>
                   <tr>
                       <td class="td-title">Check In
-                        <img (click)="goToCheckIn(booking.id)" *ngIf="booking.estado_checkin !== 'PAGADO'" src="../../../../../assets/images/pencil.png">
+                        <img (click)="goToCheckIn(booking.id)" *ngIf="booking.estado_checkin !== 'COMPLETADO'" src="../../../../../assets/images/pencil.png">
                       </td>
                   </tr>
                   <tr>
                       <td class="td-description">{{booking.check_in}}
                         <img *ngIf="booking.estado_checkin === 'PENDIENTE'" src="../../../../../assets/images/pending-icon 1.png">
-                        <img *ngIf="booking.estado_checkin === 'PAGADO'" src="../../../../../assets/images/check.svg">
+                        <img *ngIf="booking.estado_checkin === 'COMPLETADO'" src="../../../../../assets/images/check.svg">
                       </td>
                   </tr>
                   <tr>
